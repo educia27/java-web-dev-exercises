@@ -3,12 +3,19 @@ package org.launchcode.java.demos.lsn2controlflowandcollections;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+
 public class ArrayListGradebook {
 
     public static void main(String[] args) {
 
         ArrayList<String> students = new ArrayList<>();
         ArrayList<Double> grades = new ArrayList<>();
+        ArrayList<Character> charStars = new ArrayList<>();
+        charStars.add('a');
+        charStars.add('b');
+        charStars.add('c');
+        System.out.println(charStars);
         Scanner input = new Scanner(System.in);
         String newStudent;
 
