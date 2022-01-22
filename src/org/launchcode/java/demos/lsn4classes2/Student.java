@@ -1,5 +1,8 @@
 package org.launchcode.java.demos.lsn4classes2;
 
+import java.sql.SQLOutput;
+import java.util.ArrayList;
+
 public class Student {
 
     private static int nextStudentId = 1;
@@ -7,6 +10,11 @@ public class Student {
     private int studentId;
     private int numberOfCredits = 0;
     private double gpa = 0.0;
+
+//    private double currentQualityScore = 0;
+//    private double totalQualityScore = 0;
+//
+//    private int totalCourseCredits;
 
     public Student (String name, int studentId, int numberOfCredits, double gpa) {
         this.name = name;
@@ -30,13 +38,13 @@ public class Student {
 
 
      //TODO: Uncomment and complete the getGradeLevel method here:
-    public String getGradeLevel() {
+    public static String getGradeLevel(int credits) {
         // Determine the grade level of the student based on numberOfCredits
-        if (this.numberOfCredits <= 12) {
+        if (credits <= 29) {
             return "Freshmen";
-        } else if (this.numberOfCredits <= 24) {
+        } else if (credits <= 59) {
             return "Sophomore";
-        } else if (this.numberOfCredits <= 36) {
+        } else if (credits <= 89) {
             return "Junior";
         } else {
             return "Senior";
@@ -45,8 +53,24 @@ public class Student {
 
     // TODO: Complete the addGrade method.
     public void addGrade(int courseCredits, double grade) {
-      this.numberOfCredits = courseCredits;
-      this.gpa = grade;
+        double totalQualityScore = this.gpa * this.numberOfCredits;
+        totalQualityScore += courseCredits * grade;
+        this.numberOfCredits += courseCredits;
+        this.gpa = totalQualityScore/this.numberOfCredits;
+
+
+//        currentQualityScore = (double) (gpa * numberOfCredits);
+//
+//        totalQualityScore = (double) (currentQualityScore + (grade * courseCredits));
+//
+//
+//        totalCourseCredits = numberOfCredits + courseCredits;
+//
+//        grade = totalQualityScore/totalCourseCredits;
+//
+//        System.out.println("The grade for this student is a " + grade + " GPA. ");
+//        System.out.println(" Total Course Credits being incremented: " + totalCourseCredits);
+
     }
 
     // TODO: Add your custom 'toString' method here. Make sure it returns a well-formatted String rather
@@ -88,12 +112,16 @@ public class Student {
     }
 
     public static void main(String[] args) {
-        Student sally = new Student("Sally",1,1,4.0);
+        Student sally = new Student("Sally",1,5,4.0);
         System.out.println("The Student class works! " + sally.getName() + " is a student!");
+        System.out.println(sally.toString());
+        sally.addGrade(5, 2.4);
         System.out.println(sally);
-        sally.addGrade(12, 3.5);
-        System.out.println(sally);
-        sally.addGrade(25, 3.8);
-        System.out.println(sally);
+        sally.addGrade(5, 1.7);
+        System.out.println(sally.getGpa());
+        System.out.println(sally.getGradeLevel(100));
+
+
+
     }
 }
